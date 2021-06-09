@@ -1,6 +1,7 @@
 package com.spring.security.bootwithsecurity.service;
 
 import com.spring.security.bootwithsecurity.entity.User;
+import com.spring.security.bootwithsecurity.model.ResponseDTO;
 
 import java.util.List;
 
@@ -15,4 +16,7 @@ public interface UserService {
     void updateUser(User user);
 
     void deleteUser(Long id);
+
+    ResponseDTO saveUserWithResponseDTO(User user);
+
 }

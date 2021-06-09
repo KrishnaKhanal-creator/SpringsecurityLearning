@@ -1,6 +1,7 @@
 package com.spring.security.bootwithsecurity.controller;
 
 import com.spring.security.bootwithsecurity.entity.User;
+import com.spring.security.bootwithsecurity.model.ResponseDTO;
 import com.spring.security.bootwithsecurity.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,6 +12,7 @@ import javax.jws.soap.SOAPBinding;
 import java.util.List;
 
 @RestController
+@RestControllerAdvice
 public class UserController {
 
     @Autowired
@@ -19,6 +21,11 @@ public class UserController {
     @PostMapping("/new_user")
     public ResponseEntity<User> saveNewUser(@RequestBody User user){
         return new ResponseEntity<>(userService.saveUser(user), HttpStatus.CREATED);
+    }
+
+    @PostMapping("/userWithResponseDTO")
+    public ResponseEntity<ResponseDTO> saveuser(@RequestBody User user){
+        return new ResponseEntity<>(userService.saveUserWithResponseDTO(user), HttpStatus.CREATED);
     }
 
     @GetMapping("/user/{id}")
