@@ -9,7 +9,7 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @Data
-@Table(name = "user_db")
+@Table(name = "user_tbl")
 public class User {
 
     @Id
