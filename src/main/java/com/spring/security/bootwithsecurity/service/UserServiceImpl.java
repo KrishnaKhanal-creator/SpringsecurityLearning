@@ -3,34 +3,38 @@ package com.spring.security.bootwithsecurity.service;
 import com.spring.security.bootwithsecurity.dao.UserRepository;
 import com.spring.security.bootwithsecurity.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+import java.util.List;
+
+@Service
 public class UserServiceImpl implements UserService{
 
     @Autowired
     public UserRepository userRepository;
 
     @Override
-    public void saveUser(User user) {
+    public User saveUser(User user) {
+        return userRepository.save(user);
+    }
+
+    @Override
+    public User findById(Long id) {
+        return userRepository.findById(id).get();
+    }
+
+    @Override
+    public List<User> findAllUser() {
+        return userRepository.findAll();
+    }
+
+    @Override
+    public void updateUser(User user) {
         userRepository.save(user);
     }
 
     @Override
-    public void findById(int id) {
-//       userRepository.findById(id).get();
-    }
-
-    @Override
-    public void findAllUser() {
-        userRepository.findAll();
-    }
-
-    @Override
-    public void updateUser(int id) {
-
-    }
-
-    @Override
-    public void deleteUser(int id) {
-
+    public void deleteUser(Long id) {
+        userRepository.deleteById(id);
     }
 }

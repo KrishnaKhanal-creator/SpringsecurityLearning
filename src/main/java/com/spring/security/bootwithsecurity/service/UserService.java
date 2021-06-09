@@ -2,16 +2,17 @@ package com.spring.security.bootwithsecurity.service;
 
 import com.spring.security.bootwithsecurity.entity.User;
 
+import java.util.List;
+
 public interface UserService {
 
-    void saveUser(User user);
+    User saveUser(User user);
 
-    void findById(int id);
-    void findAllUser();
+    User findById(Long id);
 
-    void updateUser(int id);
+    List<User> findAllUser();
 
-    void deleteUser(int id);
+    void updateUser(User user);
 
-
+    void deleteUser(Long id);
 }
