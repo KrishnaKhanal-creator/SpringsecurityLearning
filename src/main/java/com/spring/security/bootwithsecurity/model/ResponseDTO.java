@@ -11,6 +11,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ResponseDTO {
-    private String message;
-    private User user;
+
+    private String responseMessage;
+    private String responseType;
+    private Object responseData;
 }

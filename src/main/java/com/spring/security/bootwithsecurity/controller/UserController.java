@@ -8,46 +8,23 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.jws.soap.SOAPBinding;
 import java.util.List;
 
 @RestController
-@RestControllerAdvice
+@RequestMapping("/api/v1/user")
 public class UserController {
 
     @Autowired
     private UserService userService;
 
-    @PostMapping("/new_user")
-    public ResponseEntity<User> saveNewUser(@RequestBody User user){
-        return new ResponseEntity<>(userService.saveUser(user), HttpStatus.CREATED);
+    @GetMapping("user/{userId}")
+    public ResponseEntity<ResponseDTO> getUser(@PathVariable("userId") Long id){
+        return new ResponseEntity<>(userService.getUser(id),HttpStatus.OK);
+    }
+    @PatchMapping("user/{userId}")
+    public ResponseEntity<ResponseDTO> updateUser(@PathVariable("userId") Long id, @RequestBody User user){
+        return new ResponseEntity<>(userService.updateUser(id, user),HttpStatus.OK);
     }
 
-    @PostMapping("/userWithResponseDTO")
-    public ResponseEntity<ResponseDTO> saveuser(@RequestBody User user){
-        return new ResponseEntity<>(userService.saveUserWithResponseDTO(user), HttpStatus.CREATED);
-    }
-
-    @GetMapping("/user/{id}")
-    public ResponseEntity<User> listUserById(@PathVariable("id") Long id){
-        return new ResponseEntity<>(userService.findById(id),HttpStatus.OK);
-    }
-
-    @GetMapping("/list_all")
-    public ResponseEntity<List<User>> listAllUsers(){
-        return new ResponseEntity<>(userService.findAllUser(),HttpStatus.OK);
-    }
-
-    @PostMapping("/user_updaate")
-    public ResponseEntity<User> updateUser(@RequestBody User user){
-        userService.updateUser(user);
-        return new ResponseEntity<>(HttpStatus.OK);
-    }
-
-    @DeleteMapping("/delete_user/{id}")
-    public ResponseEntity<User> deleteUser(@PathVariable Long id){
-        userService.deleteUser(id);
-        return new ResponseEntity<>(HttpStatus.OK);
-    }
 
 }
