@@ -1,18 +1,18 @@
 package com.spring.security.bootwithsecurity.config;
 
 
-//import org.springframework.context.annotation.Bean;
-//import org.springframework.context.annotation.Configuration;
-//import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-//import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 
-//@Configuration
+@Configuration
 public class Config {
 
-//    @Bean
-//    public PasswordEncoder passwordEncoder(){//will be auto wired in service layer
-//        return new BCryptPasswordEncoder();
-//    }
+    @Bean
+    public PasswordEncoder passwordEncoder(){//will be auto wired in service layer
+        return new BCryptPasswordEncoder();
+    }
 
 }

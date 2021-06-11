@@ -5,7 +5,7 @@ import com.spring.security.bootwithsecurity.entity.User;
 import com.spring.security.bootwithsecurity.model.ResponseDTO;
 import com.spring.security.bootwithsecurity.utility.CommonConstants;
 import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.jws.soap.SOAPBinding;
@@ -17,12 +17,12 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-//    @Autowired
-//    private PasswordEncoder passwordEncoder;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
-    //to save a new user
+//    to save a new user
     public ResponseDTO saveUser(User user){
-//        user.setPassword(passwordEncoder.encode(user.getPassword()));//encode the password
+        user.setPassword(passwordEncoder.encode(user.getPassword()));//encode the password
         user.setToken(UUID.randomUUID().toString());//to set the token automatically
         User createdUser = userRepository.save(user);
         return ResponseDTO.builder().responseType(CommonConstants.SUCCESS).responseData(createdUser).responseMessage(CommonConstants.REGISTER_USER).build();
